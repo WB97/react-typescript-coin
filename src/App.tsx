@@ -1,25 +1,34 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { eventNames } from "process";
+import React, { useState } from "react";
+import styled, { keyframes, createGlobalStyle, css } from "styled-components";
+import Router from "./Router";
+import reset from "styled-reset";
+import { ReactQueryDevtools } from "react-query/devtools";
+
+const GlobalStyle = createGlobalStyle`
+  ${reset};
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background: ${(props) => props.theme.bgColor};
+    color: ${(props) => props.theme.textColor};
+  }
+  a{
+    transition: 0.2s;
+    text-decoration: none;
+    color:inherit;
+  }
+`;
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <GlobalStyle />
+      <Router />
+      <ReactQueryDevtools initialIsOpen={true} />
+    </>
   );
 }
 
