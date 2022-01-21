@@ -12,6 +12,9 @@ import Chart from "./Chart";
 import Price from "./Price";
 import { useQuery } from "react-query";
 import { fetchCoinInfo, fetchCoinTickers } from "../api";
+import { Helmet } from "react-helmet";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faAngleLeft } from "@fortawesome/free-solid-svg-icons";
 
 const Container = styled.div`
   max-width: 1080px;
@@ -20,10 +23,19 @@ const Container = styled.div`
 `;
 
 const Header = styled.header`
+  position: relative;
+  width: 480px;
+  margin: 0 auto;
   height: 10vh;
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+const BackBtn = styled.div`
+  position: absolute;
+  left: 0;
+  font-size: 50px;
 `;
 
 const Title = styled.h1`
@@ -176,6 +188,7 @@ function Coin() {
   const { isLoading: infoLoading, data: infoData } = useQuery<IInfo>(
     ["info", coinId],
     () => fetchCoinInfo(coinId)
+    // { refetchInterval: 5000 }
   );
   const { isLoading: tickersLoading, data: tickersData } = useQuery<IPrice>(
     ["tickers", coinId],
@@ -204,7 +217,18 @@ function Coin() {
 
   return (
     <Container>
+      <Helmet>
+        <title>
+          {state?.name ? state.name : loading ? "Loading..." : infoData?.name}
+        </title>
+      </Helmet>
+
       <Header>
+        <BackBtn>
+          <Link to={`/`}>
+            <FontAwesomeIcon icon={faAngleLeft} />
+          </Link>
+        </BackBtn>
         <Title>
           {state?.name
             ? state.name
@@ -222,7 +246,7 @@ function Coin() {
           <ArticleList>
             <Article>
               <span>Price </span>
-              <span>${tickersData?.quotes.USD.price}</span>
+              <span>${tickersData?.quotes.USD.price.toFixed(3)}</span>
             </Article>
             <Article>
               <span>Total_supply </span>
