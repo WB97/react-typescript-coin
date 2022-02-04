@@ -55,7 +55,7 @@ const Rank = styled.div`
   margin-top: 20px;
   text-align: center;
   font-size: 28px;
-  color: #89d0fd;
+  color: ${(props) => props.theme.rankColor};
 `;
 
 const Description = styled.div`
@@ -63,7 +63,7 @@ const Description = styled.div`
   padding: 10px 20px;
   text-align: center;
   font-size: 18px;
-  background-color: #363636;
+  background-color: ${(props) => props.theme.boxColor};
   border-radius: 15px;
 `;
 
@@ -102,7 +102,8 @@ const Tab = styled.div<{ isActive: boolean }>`
   background-color: ${(props) => (props.isActive ? "#d6d6d6" : "null")};
   transition: 0.2s;
   a {
-    color: ${(props) => (props.isActive ? "#424242" : "#fff")};
+    color: ${(props) =>
+      props.isActive ? props.theme.textColor : props.theme.textColor};
   }
 `;
 

@@ -2,6 +2,10 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Coins from "./routes/Coins";
 import Coin from "./routes/Coin";
 
+interface IRouterProps {
+  isDark: boolean;
+}
+
 function Router() {
   return (
     <BrowserRouter>

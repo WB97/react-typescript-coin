@@ -7,5 +7,7 @@ declare module "styled-components" {
     textColor: string;
     accentColor?: string;
     linkHoverColor?: string;
+    boxColor?: string;
+    rankColor?: string;
   }
 }

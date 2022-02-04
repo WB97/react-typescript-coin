@@ -1,9 +1,17 @@
 import { eventNames } from "process";
 import React, { useState } from "react";
-import styled, { keyframes, createGlobalStyle, css } from "styled-components";
+import styled, {
+  keyframes,
+  createGlobalStyle,
+  css,
+  ThemeProvider,
+} from "styled-components";
 import Router from "./Router";
 import reset from "styled-reset";
 import { ReactQueryDevtools } from "react-query/devtools";
+import { darkTheme, lightTheme } from "./theme";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 const GlobalStyle = createGlobalStyle`
   ${reset};
@@ -23,11 +31,14 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 function App() {
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <>
-      <GlobalStyle />
-      <Router />
-      <ReactQueryDevtools initialIsOpen={true} />
+      <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+        <GlobalStyle />
+        <Router />
+        <ReactQueryDevtools initialIsOpen={true} />
+      </ThemeProvider>
     </>
   );
 }
