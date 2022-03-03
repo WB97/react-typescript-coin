@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/static/js/main.38bb982b.js",
-    "index.html": "/index.html",
-    "main.38bb982b.js.map": "/static/js/main.38bb982b.js.map"
+    "main.js": "/react-typescript-coin/static/js/main.4bbadb05.js",
+    "index.html": "/react-typescript-coin/index.html",
+    "main.4bbadb05.js.map": "/react-typescript-coin/static/js/main.4bbadb05.js.map"
   },
   "entrypoints": [
-    "static/js/main.38bb982b.js"
+    "static/js/main.4bbadb05.js"
   ]
 }
